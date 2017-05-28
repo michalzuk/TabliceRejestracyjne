@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/uniformed_shortcut"
+        android:text="@string/uniformed_shortcut"
+        android:textSize="30dp"
+        android:textColor="@color/textPrimary"
+        android:textStyle="bold"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/uniformed_service"
+        android:text="@string/uniformed_service"
+        android:textSize="18dp"
+        android:textColor="@color/textSecondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/uniformed_shortcut" />
+
+    <TextView
+        android:id="@+id/uniformed_additional"
+        android:text="@string/uniformed_additional"
+        android:textSize="12dp"
+        android:textColor="@color/textTertiary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/uniformed_shortcut"
+        android:layout_toEndOf="@+id/uniformed_shortcut" />
+
+
+
+</RelativeLayout>
