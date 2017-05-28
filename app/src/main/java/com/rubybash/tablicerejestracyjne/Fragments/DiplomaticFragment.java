@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.rubybash.tablicerejestracyjne.Database.DatabaseAdapter;
 import com.rubybash.tablicerejestracyjne.R;
 

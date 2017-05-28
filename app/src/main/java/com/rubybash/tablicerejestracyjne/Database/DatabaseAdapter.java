@@ -1,4 +1,4 @@
-package com.rubybash.tablicerejestracyjne;
+package com.rubybash.tablicerejestracyjne.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
