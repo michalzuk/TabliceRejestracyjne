@@ -1,21 +1,31 @@
 <resources>
 
-    <string name="app_name">Tablice Rejestracyjne</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="search">Szukaj..</string>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
-    <!-- Province Strings -->
-    <string name="province_shortcut">DSW</string>
-    <string name="province_city">Świdnica</string>
-    <string name="province_province">Dolnośląskie</string>
+    </style>
 
-    <!-- Dimlomatic Strigns -->
-    <string name="diplomatic_shortcut">077xxx</string>
-    <string name="diplomatic_country">Mongolia</string>
+    <style name="Theme.App.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
 
-    <!-- UniformedServices Strings -->
-    <string name="uniformed_shortcut">UA</string>
-    <string name="uniformed_service">ABW</string>
-    <string name="uniformed_additional">Dolnośląskie</string>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

@@ -2,4 +2,19 @@
     <string name="app_name">Tablice Rejestracyjne</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="search">Szukaj..</string>
+
+    <!-- Province Strings -->
+    <string name="province_shortcut">DSW</string>
+    <string name="province_city">Świdnica</string>
+    <string name="province_province">Dolnośląskie</string>
+
+    <!-- Dimlomatic Strigns -->
+    <string name="diplomatic_shortcut">077xxx</string>
+    <string name="diplomatic_country">Mongolia</string>
+
+    <!-- UniformedServices Strings -->
+    <string name="uniformed_shortcut">UA</string>
+    <string name="uniformed_service">ABW</string>
+    <string name="uniformed_additional">Dolnośląskie</string>
 </resources>
