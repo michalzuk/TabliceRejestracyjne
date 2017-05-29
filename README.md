@@ -3,7 +3,7 @@
 *<i>Prosta, lekka, przejrzysta aplikacja do szukania polskich tablic rejestracyjnych </i>*
 
 
-Niezwykle przyjazny i czytelny interfejs, za pomocą filtru umożliwi Ci wyszukanie tablicy rejestracyjnen jakiej szukasz.
+Niezwykle przyjazny i czytelny interfejs, za pomocą filtru umożliwi Ci wyszukanie tablicy rejestracyjnej jakiej szukasz.
 Dostępna offline w każdym miejscu, bez jakichkolwiek reklam.
 
 Kategorie Tablic Rejestracyjnych:
@@ -92,7 +92,7 @@ Projekt oparty na licencji • [MIT](LICENSE.md)
 *<i>A simple, lightweight, pleasant android app to seek Polish license plates </i>*
 
 
-Niezwykle przyjazny i czytelny interfejs, za pomocą filtru umożliwi Ci wyszukanie tablicy rejestracyjnen jakiej szukasz.
+Niezwykle przyjazny i czytelny interfejs, za pomocą filtru umożliwi Ci wyszukanie tablicy rejestracyjnej jakiej szukasz.
 Dostępna offline w każdym miejscu, bez jakichkolwiek reklam.
 
 The categories of license plates: 
