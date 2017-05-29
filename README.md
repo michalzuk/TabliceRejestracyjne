@@ -1,7 +1,7 @@
 [PL] Tablice Rejestracyjne
 =======================
-*<i>Prosta, lekka, przejrzysta aplikacja do szukania polskich tablic rejestracyjnych </i>*
 
+*<i>Prosta, lekka, przejrzysta aplikacja do szukania polskich tablic rejestracyjnych </i>*
 
 Niezwykle przyjazny i czytelny interfejs, za pomocą filtru umożliwi Ci wyszukanie tablicy rejestracyjnej jakiej szukasz.
 Dostępna offline w każdym miejscu, bez jakichkolwiek reklam.
@@ -38,6 +38,7 @@ Nabliższe ulepszenia
 - Przytrzymaj tablicę, aby skopiować wyróżnik do schowka.
 - Filtrowanie za pomocą wszystkich kolumn.
 - Zastąpienie obecnej bazy, bazą zewnętrzną.
+- Wzorzec projektowy Singleton dla bazy danych 
 
 
 
@@ -92,8 +93,7 @@ Projekt oparty na licencji • [MIT](LICENSE.md)
 *<i>A simple, lightweight, pleasant android app to seek Polish license plates </i>*
 
 
-Niezwykle przyjazny i czytelny interfejs, za pomocą filtru umożliwi Ci wyszukanie tablicy rejestracyjnej jakiej szukasz.
-Dostępna offline w każdym miejscu, bez jakichkolwiek reklam.
+> Description avaliable soon
 
 The categories of license plates: 
 - Provinces
@@ -127,6 +127,7 @@ Incoming improvements
 - Long press on the license plate copies it to the clipboard.
 - Filter plates by each one row.
 - Replacement database by external one.
+- implementation of singleton pattern for SQLite Database
 
 
 Code examples
