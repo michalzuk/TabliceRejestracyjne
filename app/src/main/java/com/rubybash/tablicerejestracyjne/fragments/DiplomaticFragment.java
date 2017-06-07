@@ -1,4 +1,4 @@
-package com.rubybash.tablicerejestracyjne.Fragments;
+package com.rubybash.tablicerejestracyjne.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.rubybash.tablicerejestracyjne.Database.DatabaseAdapter;
+import com.rubybash.tablicerejestracyjne.database.DatabaseAdapter;
 import com.rubybash.tablicerejestracyjne.R;
 
 /**
@@ -24,9 +24,8 @@ import com.rubybash.tablicerejestracyjne.R;
 
 public class DiplomaticFragment extends Fragment {
 
-    ListView classListView = null;
 
-    DatabaseAdapter databaseAdapter;
+    private DatabaseAdapter databaseAdapter;
 
 
 
@@ -49,7 +48,7 @@ public class DiplomaticFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_tablice, container, false);
 
 
-        Cursor cursor = databaseAdapter.fetchDimplomaticTablice();
+        Cursor cursor = databaseAdapter.fetchDimplomaticLicensePlates();
 
         String[] columns = new String[]{
                 databaseAdapter.KEY_SHORTCUT, databaseAdapter.KEY_COUNTRY

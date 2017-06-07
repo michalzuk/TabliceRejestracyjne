@@ -1,4 +1,4 @@
-package com.rubybash.tablicerejestracyjne.Fragments;
+package com.rubybash.tablicerejestracyjne.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,14 +15,14 @@ import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.rubybash.tablicerejestracyjne.Database.DatabaseAdapter;
+import com.rubybash.tablicerejestracyjne.database.DatabaseAdapter;
 import com.rubybash.tablicerejestracyjne.R;
 
 /**
  * Created by michalzuk on 5/23/2017.
  */
 
-public class ProvinceFragment extends Fragment {
+public class UniformedServicesFragment extends Fragment {
 
     ListView classListView = null;
 
@@ -37,8 +37,9 @@ public class ProvinceFragment extends Fragment {
         databaseAdapter = new DatabaseAdapter(getContext());
         databaseAdapter.open();
 
-        databaseAdapter.dropProvinceTable();
-        databaseAdapter.provinceData();
+        databaseAdapter.dropUniformedTable();
+        databaseAdapter.uniformedData();
+
 
     }
 
@@ -47,17 +48,17 @@ public class ProvinceFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_tablice, container, false);
 
 
-        Cursor cursor = databaseAdapter.fetchProvinceTablice();
+        Cursor cursor = databaseAdapter.fetchUniformedLicensePlates();
 
         String[] columns = new String[]{
-                databaseAdapter.KEY_SHORTCUT, databaseAdapter.KEY_CITY, databaseAdapter.KEY_PROVINCE
+                databaseAdapter.KEY_SHORTCUT, databaseAdapter.KEY_SERVICE, databaseAdapter.KEY_ADDITIONAL
         };
 
         int rows[] = new int[]{
-                R.id.province_shortcut, R.id.province_city, R.id.province_province
+                R.id.uniformed_shortcut, R.id.uniformed_service, R.id.uniformed_additional
         };
 
-        final SimpleCursorAdapter tabliceAdapter = new SimpleCursorAdapter(getContext(), R.layout.tablica, cursor, columns, rows, 0);
+        final SimpleCursorAdapter tabliceAdapter = new SimpleCursorAdapter(getContext(), R.layout.tablica_uniformed, cursor, columns, rows, 0);
 
         final ListView listView = (ListView) rootView.findViewById(R.id.tabliceListView);
         listView.setAdapter(tabliceAdapter);
@@ -95,7 +96,7 @@ public class ProvinceFragment extends Fragment {
         tabliceAdapter.setFilterQueryProvider(new FilterQueryProvider() {
             @Override
             public Cursor runQuery(CharSequence constraint) {
-                return databaseAdapter.fetchProvinceByShortcut(constraint.toString());
+                return databaseAdapter.fetchUniformedByShortcut(constraint.toString());
             }
         });
 

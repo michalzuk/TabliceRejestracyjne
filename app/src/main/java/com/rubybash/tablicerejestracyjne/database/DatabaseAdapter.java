@@ -1,4 +1,4 @@
-package com.rubybash.tablicerejestracyjne.Database;
+package com.rubybash.tablicerejestracyjne.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,42 +18,42 @@ import android.widget.BaseAdapter;
 
 public class DatabaseAdapter extends BaseAdapter {
 
-    //BASIC DB INFO
-    public static final String DATABASE_NAME = "TabliceRejestracyjne";
-    public static final String TAG = "DatabaseAdapter";
-    public static final int DATABASE_VERSION = 1;
+
+    private static final String DATABASE_NAME = "TabliceRejestracyjne";
+    private static final String TAG = "DatabaseAdapter";
+    private static final int DATABASE_VERSION = 1;
 
 
-    //Database Tables
-    public static final String TABLE_PROVINCE = "table_province";
-    public static final String TABLE_DIPLOMATIC = "table_diplomatic";
-    public static final String TABLE_UNIFORMED = "table_uniformed";
+
+    private static final String TABLE_PROVINCE = "table_province";
+    private static final String TABLE_DIPLOMATIC = "table_diplomatic";
+    private static final String TABLE_UNIFORMED = "table_uniformed";
 
 
-    //Common Database Rows
-    public static final String KEY_ROWID = "_id";
+
+    private static final String KEY_ROWID = "_id";
     public static final String KEY_SHORTCUT = "shortcut";
 
 
-    //Province Database Rows (Other)
+
     public static final String KEY_CITY = "city";
     public static final String KEY_PROVINCE = "province";
 
 
-    //Dimplomatic Database Rows (Other)
+
     public static final String KEY_COUNTRY = "country";
 
 
-    //Uniformed Services Database Rows (Other)
+
     public static final String KEY_SERVICE = "service";
     public static final String KEY_ADDITIONAL = "additional";
 
-    private final Context mContext;
+    private final Context context;
     private DatabaseHelper dbHelper;
-    private SQLiteDatabase mDb;
+    private SQLiteDatabase sqLiteDatabase;
 
 
-    private static final String TABLE_PROVINCE_CREATE() {
+    private static String tableProvinceCreate() {
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS ").append(TABLE_PROVINCE).append(" ( ")
                 .append(KEY_ROWID).append(" INTEGER PRIMARY KEY autoincrement,")
@@ -64,7 +64,7 @@ public class DatabaseAdapter extends BaseAdapter {
         return sb.toString();
     }
 
-    private static final String TABLE_DIPLOMATIC_CREATE() {
+    private static String tableDiplomaticCreate() {
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS ").append(TABLE_DIPLOMATIC).append(" ( ")
                 .append(KEY_ROWID).append(" INTEGER PRIMARY KEY autoincrement,")
@@ -74,7 +74,7 @@ public class DatabaseAdapter extends BaseAdapter {
         return sb.toString();
     }
 
-    private static final String TABLE_UNIFORMED_CREATE() {
+    private static String tableUniformedCreate() {
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS ").append(TABLE_UNIFORMED).append(" ( ")
                 .append(KEY_ROWID).append(" INTEGER PRIMARY KEY autoincrement,")
@@ -86,21 +86,21 @@ public class DatabaseAdapter extends BaseAdapter {
     }
 
 
-    private static final String[] PROVINCE_ROWS() {
+    private static String[] provinceRows() {
         String[] rows = new String[]{KEY_ROWID,
                 KEY_SHORTCUT, KEY_CITY, KEY_PROVINCE};
 
         return rows;
     }
 
-    private static final String[] DIPLOMATIC_ROWS() {
+    private static String[] diplomaticRows() {
         String[] rows = new String[]{KEY_ROWID,
                 KEY_SHORTCUT, KEY_COUNTRY};
 
         return rows;
     }
 
-    private static final String[] UNIFORMED_ROWS() {
+    private static String[] uniformedRows() {
         String[] rows = new String[]{KEY_ROWID,
                 KEY_SHORTCUT, KEY_SERVICE, KEY_ADDITIONAL};
 
@@ -109,87 +109,70 @@ public class DatabaseAdapter extends BaseAdapter {
 
 
     public DatabaseAdapter(Context context) {
-        this.mContext = context;
+        this.context = context;
     }
 
     public DatabaseAdapter open() throws SQLException {
-        dbHelper = new DatabaseHelper(mContext);
-        mDb = dbHelper.getWritableDatabase();
+        dbHelper = new DatabaseHelper(context);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
         return this;
     }
 
-    public void close() {
-        if (dbHelper != null) {
-            dbHelper.close();
-        }
-    }
 
-
-    public long addProvinceTable(String shortcut, String city, String province) {
+    private long addProvinceTable(String shortcut, String city, String province) {
         ContentValues values = new ContentValues();
         values.put(KEY_SHORTCUT, shortcut);
         values.put(KEY_CITY, city);
         values.put(KEY_PROVINCE, province);
 
-        return mDb.insert(TABLE_PROVINCE, null, values);
+        return sqLiteDatabase.insert(TABLE_PROVINCE, null, values);
     }
 
-    public long addDiplomaticTable(String shortcut, String country) {
+    private long addDiplomaticTable(String shortcut, String country) {
         ContentValues values = new ContentValues();
         values.put(KEY_SHORTCUT, shortcut);
         values.put(KEY_COUNTRY, country);
 
-        return mDb.insert(TABLE_DIPLOMATIC, null, values);
+        return sqLiteDatabase.insert(TABLE_DIPLOMATIC, null, values);
     }
 
-    public long addUniformedTable(String shortcut, String service, String additional) {
+    private long addUniformedTable(String shortcut, String service, String additional) {
         ContentValues values = new ContentValues();
         values.put(KEY_SHORTCUT, shortcut);
         values.put(KEY_SERVICE, service);
         values.put(KEY_ADDITIONAL, additional);
 
-        return mDb.insert(TABLE_UNIFORMED, null, values);
+        return sqLiteDatabase.insert(TABLE_UNIFORMED, null, values);
     }
 
 
     public boolean dropProvinceTable() {
 
-        int removed = 0;
-        removed = mDb.delete(TABLE_PROVINCE, null, null);
+        int removed;
+        removed = sqLiteDatabase.delete(TABLE_PROVINCE, null, null);
         Log.w(TAG, Integer.toString(removed));
         return removed > 0;
     }
 
     public boolean dropDiplomaticTable() {
 
-        int removed = 0;
-        removed = mDb.delete(TABLE_DIPLOMATIC, null, null);
+        int removed;
+        removed = sqLiteDatabase.delete(TABLE_DIPLOMATIC, null, null);
         Log.w(TAG, Integer.toString(removed));
         return removed > 0;
     }
 
     public boolean dropUniformedTable() {
 
-        int removed = 0;
-        removed = mDb.delete(TABLE_UNIFORMED, null, null);
+        int removed;
+        removed = sqLiteDatabase.delete(TABLE_UNIFORMED, null, null);
         Log.w(TAG, Integer.toString(removed));
         return removed > 0;
     }
 
-    public Cursor fetchProvinceTablice() {
+    public Cursor fetchProvinceLicensePlates() {
 
-        Cursor cursor = mDb.query(TABLE_PROVINCE, PROVINCE_ROWS(), null, null, null, null, null, null);
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-
-        return cursor;
-    }
-
-    public Cursor fetchDimplomaticTablice() {
-
-        Cursor cursor = mDb.query(TABLE_DIPLOMATIC, DIPLOMATIC_ROWS(), null, null, null, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(TABLE_PROVINCE, provinceRows(), null, null, null, null, null, null);
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -198,9 +181,19 @@ public class DatabaseAdapter extends BaseAdapter {
         return cursor;
     }
 
-    public Cursor fetchUniformedTablice() {
+    public Cursor fetchDimplomaticLicensePlates() {
 
-        Cursor cursor = mDb.query(TABLE_UNIFORMED, UNIFORMED_ROWS(), null, null, null, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(TABLE_DIPLOMATIC, diplomaticRows(), null, null, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        return cursor;
+    }
+
+    public Cursor fetchUniformedLicensePlates() {
+        Cursor cursor = sqLiteDatabase.query(TABLE_UNIFORMED, uniformedRows(), null, null, null, null, null, null);
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -212,11 +205,11 @@ public class DatabaseAdapter extends BaseAdapter {
 
     public Cursor fetchProvinceByShortcut(String inputText) throws SQLException {
         Log.w(TAG, inputText);
-        Cursor cursor = null;
+        Cursor cursor;
         if (inputText == null || inputText.length() == 0) {
-            cursor = mDb.query(TABLE_PROVINCE, PROVINCE_ROWS(), null, null, null, null, null, null);
+            cursor = sqLiteDatabase.query(TABLE_PROVINCE, provinceRows(), null, null, null, null, null, null);
         } else {
-            cursor = mDb.query(true, TABLE_PROVINCE, PROVINCE_ROWS(), KEY_SHORTCUT + " like '%" + inputText + "%'",
+            cursor = sqLiteDatabase.query(true, TABLE_PROVINCE, provinceRows(), KEY_SHORTCUT + " like '%" + inputText + "%'",
                     null, null, null, null, null);
         }
         if (cursor != null) {
@@ -227,11 +220,11 @@ public class DatabaseAdapter extends BaseAdapter {
 
     public Cursor fetchDiplomaticByShortcut(String inputText) throws SQLException {
         Log.w(TAG, inputText);
-        Cursor cursor = null;
+        Cursor cursor;
         if (inputText == null || inputText.length() == 0) {
-            cursor = mDb.query(TABLE_DIPLOMATIC, DIPLOMATIC_ROWS(), null, null, null, null, null, null);
+            cursor = sqLiteDatabase.query(TABLE_DIPLOMATIC, diplomaticRows(), null, null, null, null, null, null);
         } else {
-            cursor = mDb.query(true, TABLE_DIPLOMATIC, DIPLOMATIC_ROWS(), KEY_SHORTCUT + " like '%" + inputText + "%'",
+            cursor = sqLiteDatabase.query(true, TABLE_DIPLOMATIC, diplomaticRows(), KEY_SHORTCUT + " like '%" + inputText + "%'",
                     null, null, null, null, null);
         }
         if (cursor != null) {
@@ -242,11 +235,11 @@ public class DatabaseAdapter extends BaseAdapter {
 
     public Cursor fetchUniformedByShortcut(String inputText) throws SQLException {
         Log.w(TAG, inputText);
-        Cursor cursor = null;
+        Cursor cursor;
         if (inputText == null || inputText.length() == 0) {
-            cursor = mDb.query(TABLE_UNIFORMED, UNIFORMED_ROWS(), null, null, null, null, null, null);
+            cursor = sqLiteDatabase.query(TABLE_UNIFORMED, uniformedRows(), null, null, null, null, null, null);
         } else {
-            cursor = mDb.query(true, TABLE_UNIFORMED, UNIFORMED_ROWS(), KEY_SHORTCUT + " like '%" + inputText + "%'",
+            cursor = sqLiteDatabase.query(true, TABLE_UNIFORMED, uniformedRows(), KEY_SHORTCUT + " like '%" + inputText + "%'",
                     null, null, null, null, null);
         }
         if (cursor != null) {
@@ -277,9 +270,9 @@ public class DatabaseAdapter extends BaseAdapter {
     }
 
 
-    public class DatabaseHelper extends SQLiteOpenHelper {
+    private class DatabaseHelper extends SQLiteOpenHelper {
 
-        public DatabaseHelper(Context context) {
+        private DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -287,9 +280,9 @@ public class DatabaseAdapter extends BaseAdapter {
         @Override
         public void onCreate(SQLiteDatabase db) {
             Log.w(TAG, DATABASE_NAME);
-            db.execSQL(TABLE_PROVINCE_CREATE());
-            db.execSQL(TABLE_DIPLOMATIC_CREATE());
-            db.execSQL(TABLE_UNIFORMED_CREATE());
+            db.execSQL(tableProvinceCreate());
+            db.execSQL(tableDiplomaticCreate());
+            db.execSQL(tableUniformedCreate());
         }
 
         @Override

@@ -4,6 +4,12 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="search">Szukaj..</string>
 
+    <!-- Main Strings -->
+    <string name="provinces">Powiaty</string>
+    <string name="diplomatics">Dymplomatyczne</string>
+    <string name="uniformed_services">Służby mundurowe</string>
+
+
     <!-- Province Strings -->
     <string name="province_shortcut">DSW</string>
     <string name="province_city">Świdnica</string>
